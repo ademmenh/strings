@@ -57,7 +57,7 @@ charDNode* funccharDNodePointer (string DList, int index)
     {
         if ( DList.length-1<index )
         {
-            printf ("The index is out the range of the DList !!!");
+            printf ("The index is out the range of the String !!!");
             exit (1);
         }
 
@@ -73,7 +73,7 @@ charDNode* funccharDNodePointer (string DList, int index)
     {
         if ( DList.length<-index )
         {
-            printf ("The index is out the range of the DList !!!");
+            printf ("The index is out the range of the String !!!");
             exit (1);
         }
 
@@ -133,7 +133,7 @@ void funcstringInsert (string *pString, int index, char value)
         
         if ( (*pString).length<index )
         {
-            printf ("The index is out the range of the DList !!!");
+            printf ("The index is out the range of the String !!!");
             exit (1);
         }
 
@@ -185,7 +185,7 @@ void funcstringInsert (string *pString, int index, char value)
     {
         if ( (*pString).length+1<-index )
         {
-            printf ("The index is out the range of the DList !!!");
+            printf ("The index is out the range of the String !!!");
             exit (1);
         }
 
@@ -337,7 +337,7 @@ int funcstringIndex (string pString, char value)
         vpCn = vpCn->Next;
     }
 
-    printf ("The Number %c do not exist in the DList !!!", value);
+    printf ("The Number %c do not exist in the String !!!", value);
     exit(1);
 }
 
@@ -444,7 +444,7 @@ void funcstringRemoveBegin (string *pString)
 
     if ( (*pString).length==0 )
     {
-        printf ("The list is already empty !!!");
+        printf ("The String is already empty !!!");
         return;
     }
 
@@ -481,7 +481,7 @@ void funcstringRemoveEnd (string *pString)
 
     if ( (*pString).length==0 )
     {
-        printf ("The DList is already empty !!!");
+        printf ("The String is already empty !!!");
         return;
     }
 
