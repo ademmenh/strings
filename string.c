@@ -560,8 +560,10 @@ void funcstringInput (string *pString)
 
     printf ("Enter the String: ");
     fgets (Buffer, string_max_length, stdin);
+    printf ("Hit antoher Enter if needed\n");
 
-
+    while ((ClearBuffer=getchar()) != '\n' )
+    {}
 
     for ( viCn=0; viCn<string_max_length-1; viCn++ )
     {
