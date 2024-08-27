@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
+#include <string.h>
+#include <unistd.h>
 
 
 
@@ -549,27 +550,27 @@ const int string_max_length = 1001;
 void funcstringInput (string *pString)
 {
 
-    char vsString [string_max_length];
+    char Buffer [string_max_length];
     int viCn;
-    int ClearBuffer;
+    char ClearBuffer;
+
+
+    
 
 
     printf ("Enter the String: ");
-    fgets (vsString, string_max_length, stdin);
+    fgets (Buffer, string_max_length, stdin);
 
 
-    while ((ClearBuffer=getchar()) != '\n' )
-    {}
 
     for ( viCn=0; viCn<string_max_length-1; viCn++ )
     {
-        if ( vsString [viCn]=='\0' )
+        if ( Buffer [viCn]=='\n' )
         {
             break;
         }
-        funcstringInsertEnd (pString, vsString[viCn]);
+        funcstringInsertEnd (pString, Buffer[viCn]);
     }
-
 }
 
 void funcstringDisplay (string String)
@@ -623,10 +624,15 @@ int main ()
     funcstringInit (&vsString2);
 
     funcstringInput (&vsString1);
+    printf ("the size of string is: %d\n", vsString1.length);
     funcstringDisplay (vsString1);
-    printf ("\n");
+    printf ("\n\n");
     funcstringInput (&vsString2);
+     printf ("the size of string is: %d\n", vsString2.length);
+
     funcstringDisplay (vsString2);
+    printf ("\n\n");
+
 
     return 0;
 }
