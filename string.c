@@ -1,6 +1,5 @@
 
 #include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
 #include <stdbool.h>
 
@@ -515,7 +514,7 @@ void funccharDListClear (string *pString)
 
     while ( (*pString).length>0 )
     {
-        funccharDListRemove (pString, 0);  // &(*pString)
+        funcstringRemove (pString, 0);  // &(*pString)
     }
 }
 
@@ -545,42 +544,33 @@ void funcstringClear (string *pString)
 */
 
 
+const int string_max_length = 1001;
 
-char funcQuerrystring ()
+void funcstringInput (string *pString)
 {
 
-    char vfNum1;
-
-    printf ("Enter the value: ");
-    scanf ("%c", &vfNum1);
-
-    return vfNum1;
-}
-
-void funcstringCreateFIFO (string *pString, int DListSize)
-{
-
-    char vcValue;
+    char vsString [string_max_length];
     int viCn;
-    for ( viCn=0; viCn<DListSize; viCn++ )
+    int ClearBuffer;
+
+
+    printf ("Enter the String: ");
+    fgets (vsString, string_max_length, stdin);
+
+
+    while ((ClearBuffer=getchar()) != '\n' )
+    {}
+
+    for ( viCn=0; viCn<string_max_length-1; viCn++ )
     {
-        vcValue = funcQuerrystring ();
-        funcstringInsertEnd (pString, vcValue); // &(*pString)
+        if ( vsString [viCn]=='\0' )
+        {
+            break;
+        }
+        funcstringInsertEnd (pString, vsString[viCn]);
     }
+
 }
-
-void funcstringCreateLIFO (string *pString, int DListSize)
-{
-
-    char vcValue;
-    int viCn;
-    for ( viCn=0; viCn<DListSize; viCn++)
-    {
-        vcValue = funcQuerrystring ();
-        funcstringInsertBegin (pString, vcValue);   // &(*pString)
-    }
-}
-
 
 void funcstringDisplay (string String)
 {
@@ -626,5 +616,17 @@ void funcstringDisplayReversed (string String)
 
 int main ()
 {
+    string vsString1;
+    string vsString2;
+
+    funcstringInit (&vsString1);
+    funcstringInit (&vsString2);
+
+    funcstringInput (&vsString1);
+    funcstringDisplay (vsString1);
+    printf ("\n");
+    funcstringInput (&vsString2);
+    funcstringDisplay (vsString2);
+
     return 0;
 }
