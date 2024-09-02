@@ -1,9 +1,11 @@
 
+#include <stdbool.h>
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
+
 #include <unistd.h>
+#include <string.h>
 
 
 
@@ -545,7 +547,7 @@ void funcstringClear (string *pString)
 */
 
 
-const int string_max_length = 1001;
+const int string_max_length = 6;
 
 void funcstringInput (string *pString)
 {
@@ -560,10 +562,12 @@ void funcstringInput (string *pString)
 
     printf ("Enter the String: ");
     fgets (Buffer, string_max_length, stdin);
-    printf ("Hit antoher Enter if needed\n");
 
-    while ((ClearBuffer=getchar()) != '\n' )
-    {}
+    if ( Buffer[strlen(Buffer)-1] != '\n' )
+    {
+        while ((ClearBuffer=getchar()) != '\n' )
+        {}
+    }
 
     for ( viCn=0; viCn<string_max_length-1; viCn++ )
     {
