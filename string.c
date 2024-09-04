@@ -547,14 +547,17 @@ void funcstringClear (string *pString)
 */
 
 
-const int string_max_length = 6;
+const int string_max_length = 6; // 5+1
 
 void funcstringInput (string *pString)
 {
 
     char Buffer [string_max_length];
+    int viBufferSize;
+    char vcClearBuffer;
+
     int viCn;
-    char ClearBuffer;
+    
 
 
     
@@ -563,10 +566,13 @@ void funcstringInput (string *pString)
     printf ("Enter the String: ");
     fgets (Buffer, string_max_length, stdin);
 
-    if ( Buffer[strlen(Buffer)-1] != '\n' )
+    viBufferSize = strlen (Buffer);
+    if ( Buffer[viBufferSize-1] != '\n' )
     {
-        while ((ClearBuffer=getchar()) != '\n' )
-        {}
+        do
+        {
+            vcClearBuffer = getchar();
+        } while ( vcClearBuffer!='\n' );
     }
 
     for ( viCn=0; viCn<string_max_length-1; viCn++ )
