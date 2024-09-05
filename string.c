@@ -512,7 +512,7 @@ void funcstringRemoveEnd (string *pString)
 */
 
 
-void funccharDListClear (string *pString)
+void funcstringDListClear (string *pString)
 {
 
     while ( (*pString).length>0 )
@@ -547,6 +547,64 @@ void funcstringClear (string *pString)
 */
 
 
+
+int funcstringCompare (string String1, string String2)
+{
+
+    if ( String1.length==0 && String2.length==0 )
+    {
+        return 0;
+    }
+
+    if ( String1.length==0 ) // String2!=0
+    {
+        return -1;
+    }
+    
+    if ( String2.length==0 ) // String1!=0
+    {
+        return 1;
+    }
+
+    charDNode *vpCn1;
+    charDNode *vpCn2;
+
+    vpCn1 = String1.H;
+    vpCn2 = String2.H;
+    while ( vpCn1!=NULL && vpCn2!=NULL )
+    {
+        if ( vpCn1->Value > vpCn2->Value )
+        {
+            return 1;
+        }
+        
+        if ( vpCn1->Value < vpCn2->Value )
+        {
+            return -1;
+        }
+
+        vpCn1 = vpCn1->Next;
+        vpCn2 = vpCn2->Next;
+    }
+
+
+
+    if ( String1.length < String2.length )
+    {
+        return 1;
+    }
+
+    if ( String1.length > String2.length )
+    {
+        return -1;
+    }
+
+    // String1.length == String2.length
+    return 0;
+
+}
+
+
 const int STRING_MAX_LENGTH = 6; // 5+1
 
 void funcstringInput (string *pString)
@@ -576,9 +634,9 @@ void funcstringInput (string *pString)
         } while ( vcClearBuffer!='\n' );
     }
 
-    for ( viCn=0; viCn<viBufferSize; viCn++ ) // viBufferSize won't reach the \0
+    for ( viCn=0; viCn<viBufferSize; viCn++ )   // viBufferSize won't reach the '\0'
     {
-        if ( Buffer[viCn]=='\n' ) // in case of the size is less than STRING_MAX_LENGTH
+        if ( Buffer[viCn]=='\n' )               // in case of the size is less than STRING_MAX_LENGTH
         {
             break;
         }
@@ -645,6 +703,22 @@ int main ()
 
     funcstringDisplay (vsString2);
     printf ("\n\n");
+
+    int viCmp;
+    viCmp = funcstringCompare (vsString1, vsString2);
+    
+    if ( viCmp==0 )
+    {
+        printf ("the string are equal.\n");
+    }
+    else if ( viCmp==1 )
+    {
+        printf ("the string1 is greater then string2");
+    }
+    else
+    {
+        printf ("the string2 is greater then string1");
+    }
 
 
     return 0;
