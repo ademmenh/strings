@@ -604,6 +604,19 @@ int funcstringCompare (string String1, string String2)
 
 }
 
+void funcstringConcate (string *pString1, string String2)
+{
+    charDNode *vpCn;
+
+    vpCn = String2.H;
+    while ( vpCn!=NULL )
+    {
+
+        funcstringInsertEnd (pString1, vpCn->Value); // &(*pString1)
+
+        vpCn = vpCn->Next;
+    }
+}
 
 const int STRING_MAX_LENGTH = 6; // 5+1
 
@@ -704,21 +717,40 @@ int main ()
     funcstringDisplay (vsString2);
     printf ("\n\n");
 
-    int viCmp;
-    viCmp = funcstringCompare (vsString1, vsString2);
+
+
+    // int viCmp;
+    // viCmp = funcstringCompare (vsString1, vsString2);
     
-    if ( viCmp==0 )
-    {
-        printf ("the string are equal.\n");
-    }
-    else if ( viCmp==1 )
-    {
-        printf ("the string1 is greater then string2");
-    }
-    else
-    {
-        printf ("the string2 is greater then string1");
-    }
+    // if ( viCmp==0 )
+    // {
+    //     printf ("the string are equal.\n");
+    // }
+    // else if ( viCmp==1 )
+    // {
+    //     printf ("the string1 is greater then string2");
+    // }
+    // else
+    // {
+    //     printf ("the string2 is greater then string1");
+    // }
+    // print ("\n\n");
+
+
+
+    printf ("after concatenation:\n");
+    funcstringConcate (&vsString1, vsString2);
+    printf ("string1: ");
+    funcstringDisplay (vsString1);
+    printf ("\n");
+    printf ("the size of the string is: %d.\n", vsString1.length);
+    printf ("\n\n");
+    printf ("string2: ");
+    funcstringDisplay (vsString2);
+    printf ("\n");
+    printf ("the size of the string is: %d.\n", vsString2.length);
+    printf ("\n\n");
+
 
 
     return 0;
