@@ -112,10 +112,9 @@ bool funcstringEmpty (string String)
     {
         return true;
     }
-    else
-    {
-        return false;
-    }
+
+    // else
+    return false;
 }
 
 
@@ -546,6 +545,24 @@ void funcstringClear (string *pString)
 }
 */
 
+bool funcstringIsUpper (string String)
+{
+    charDNode *vpCn;
+
+    vpCn = String.H;
+    while ( vpCn!=NULL )
+    {
+        if ( vpCn->Value<65 || 95<vpCn->Value)
+        {
+            return false;
+        }
+
+        vpCn = vpCn->Next;
+    }
+
+    return true;
+}
+
 
 
 int funcstringCompare (string String1, string String2)
@@ -767,11 +784,19 @@ int main ()
 
 
 
-    printf ("Copying the string1 in string2:\n");
-    funcstringCopy ( &vsString2, vsString1 );
-    funcstringDisplay ( vsString2 );
-    printf ("\n\n");
+    // printf ("Copying the string1 in string2:\n");
+    // funcstringCopy ( &vsString2, vsString1 );
+    // funcstringDisplay ( vsString2 );
+    // printf ("\n\n");
 
+
+
+    printf ("is it upper or not:\n");
+    bool vbIsUpper = funcstringIsUpper (vsString1);
+    if ( vbIsUpper )
+    { printf ("is upper"); }
+    else
+    { printf ("is not upper"); }
 
 
 
