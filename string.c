@@ -618,7 +618,21 @@ void funcstringConcate (string *pString1, string String2)
     }
 }
 
-const int STRING_MAX_LENGTH = 6; // 5+1
+void funcstringCopy (string *pString1, string String2)
+{
+    charDNode *vpCn;
+
+    vpCn = String2.H;
+    while ( vpCn!=NULL )
+    {
+        funcstringInsertEnd ( pString1, vpCn->Value ); // &(*pString1)        
+        vpCn = vpCn->Next;
+    }
+}
+
+
+
+const int STRING_MAX_LENGTH = 101; // 100+1
 
 void funcstringInput (string *pString)
 {
@@ -711,11 +725,11 @@ int main ()
     printf ("the size of string is: %d\n", vsString1.length);
     funcstringDisplay (vsString1);
     printf ("\n\n");
-    funcstringInput (&vsString2);
-     printf ("the size of string is: %d\n", vsString2.length);
+    // funcstringInput (&vsString2);
+    // printf ("the size of string is: %d\n", vsString2.length);
 
-    funcstringDisplay (vsString2);
-    printf ("\n\n");
+    // funcstringDisplay (vsString2);
+    // printf ("\n\n");
 
 
 
@@ -738,18 +752,26 @@ int main ()
 
 
 
-    printf ("after concatenation:\n");
-    funcstringConcate (&vsString1, vsString2);
-    printf ("string1: ");
-    funcstringDisplay (vsString1);
-    printf ("\n");
-    printf ("the size of the string is: %d.\n", vsString1.length);
+    // printf ("after concatenation:\n");
+    // funcstringConcate (&vsString1, vsString2);
+    // printf ("string1: ");
+    // funcstringDisplay (vsString1);
+    // printf ("\n");
+    // printf ("the size of the string is: %d.\n", vsString1.length);
+    // printf ("\n\n");
+    // printf ("string2: ");
+    // funcstringDisplay (vsString2);
+    // printf ("\n");
+    // printf ("the size of the string is: %d.\n", vsString2.length);
+    // printf ("\n\n");
+
+
+
+    printf ("Copying the string1 in string2:\n");
+    funcstringCopy ( &vsString2, vsString1 );
+    funcstringDisplay ( vsString2 );
     printf ("\n\n");
-    printf ("string2: ");
-    funcstringDisplay (vsString2);
-    printf ("\n");
-    printf ("the size of the string is: %d.\n", vsString2.length);
-    printf ("\n\n");
+
 
 
 
