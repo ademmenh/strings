@@ -581,6 +581,26 @@ bool funcstringIsLower (string String)
     return true;
 }
 
+bool funcstringIsAlpha (string String)
+{
+    charDNode *vpCn;
+    char Value;
+
+    vpCn = String.H;
+    while ( vpCn!=NULL )
+    {
+        Value = vpCn->Value;
+        if ( Value<65 || 95<Value   &&   Value<97 || 122<Value )
+        {
+            return false;
+        }
+
+        vpCn = vpCn->Next;
+    }
+
+    return true;
+}
+
 
 
 int funcstringCompare (string String1, string String2)
@@ -809,15 +829,15 @@ int main ()
 
 
 
-    printf ("is it lower or not:\n");
-    bool vbIsLower = funcstringIsLower (vsString1);
-    if ( vbIsLower )
+    printf ("is it alpha or not:\n");
+    bool vbAlpha = funcstringIsAlpha (vsString1);
+    if ( vbAlpha )
     {
-        printf ("is lower");
+        printf ("is alpha");
     }
     else
     {
-        printf ("is not lower");
+        printf ("is not alpha");
     }
 
 
