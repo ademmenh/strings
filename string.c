@@ -644,7 +644,7 @@ void funcstringLower (string *pString)
     vpCn = (*pString).H;
     while ( vpCn!=NULL )
     {
-        if ( 65<vpCn->Value && vpCn->Value<90 )
+        if ( 65<=vpCn->Value && vpCn->Value<=90 )
         {
             vpCn->Value = vpCn->Value +32;    
         }
