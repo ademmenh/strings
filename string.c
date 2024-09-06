@@ -637,6 +637,22 @@ bool funcstringIsAlphaNumeric (string String)
     return true;
 }
 
+void funcstringLower (string *pString)
+{
+    charDNode *vpCn;
+
+    vpCn = (*pString).H;
+    while ( vpCn!=NULL )
+    {
+        if ( 65<vpCn->Value && vpCn->Value<90 )
+        {
+            vpCn->Value = vpCn->Value +32;    
+        }
+
+        vpCn = vpCn->Next;
+    }
+}
+
 
 
 int funcstringCompare (string String1, string String2)
@@ -865,16 +881,20 @@ int main ()
 
 
 
-    printf ("is it alphanumeric or not:\n");
-    bool vbAlphaNumeric = funcstringIsAlphaNumeric (vsString1);
-    if ( vbAlphaNumeric )
-    {
-        printf ("is alphanumeric");
-    }
-    else
-    {
-        printf ("is not alphanumeric");
-    }
+    // printf ("is it alphanumeric or not:\n");
+    // bool vbAlphaNumeric = funcstringIsAlphaNumeric (vsString1);
+    // if ( vbAlphaNumeric )
+    // {
+    //     printf ("is alphanumeric");
+    // }
+    // else
+    // {
+    //     printf ("is not alphanumeric");
+    // }
+
+    printf ("lowering string:\n");
+    funcstringLower (&vsString1);
+    funcstringDisplay (vsString1);
 
 
 
