@@ -653,6 +653,22 @@ void funcstringLower (string *pString)
     }
 }
 
+void funcstringUpper (string *pString)
+{
+    charDNode *vpCn;
+
+    vpCn = (*pString).H;
+    while ( vpCn!=NULL )
+    {
+        if ( 97<=vpCn->Value && vpCn->Value<=122 )
+        {
+            vpCn->Value = vpCn->Value - 32;
+        }
+
+        vpCn = vpCn->Next;
+    }
+}
+
 
 
 int funcstringCompare (string String1, string String2)
@@ -892,8 +908,8 @@ int main ()
     //     printf ("is not alphanumeric");
     // }
 
-    printf ("lowering string:\n");
-    funcstringLower (&vsString1);
+    printf ("uppering string:\n");
+    funcstringUpper (&vsString1);
     funcstringDisplay (vsString1);
 
 
