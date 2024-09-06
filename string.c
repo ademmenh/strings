@@ -601,6 +601,24 @@ bool funcstringIsAlpha (string String)
     return true;
 }
 
+bool funcstringIsNumeric (string String)
+{
+    charDNode *vpCn;
+
+    vpCn = String.H;
+    while ( vpCn!=NULL )
+    {
+        if ( vpCn->Value<48 || 57<vpCn->Value )
+        {
+            return false;
+        }
+
+        vpCn = vpCn->Next;
+    }
+
+    return true;
+}
+
 
 
 int funcstringCompare (string String1, string String2)
@@ -829,15 +847,15 @@ int main ()
 
 
 
-    printf ("is it alpha or not:\n");
-    bool vbAlpha = funcstringIsAlpha (vsString1);
-    if ( vbAlpha )
+    printf ("is it numeric or not:\n");
+    bool vbNumeric = funcstringIsNumeric (vsString1);
+    if ( vbNumeric )
     {
-        printf ("is alpha");
+        printf ("is numeric");
     }
     else
     {
-        printf ("is not alpha");
+        printf ("is not numeric");
     }
 
 
