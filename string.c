@@ -1,11 +1,24 @@
 
-#include <stdbool.h>
+#ifndef stringsIsImported
+    #define stringsIsImported
+#endif
 
-#include <stdio.h>
-#include <stdlib.h>
+#ifndef _STDBOOL_H
+    #include <stdbool.h>
+#endif
 
-#include <unistd.h>
-#include <string.h>
+#ifndef _STDIO_H
+    #include <stdio.h>
+#endif
+
+#ifndef _STDLIB_H
+    #include <stdlib.h>
+#endif
+
+#ifndef _STRING_H
+    #include <string.h>
+#endif
+
 
 
 
@@ -848,11 +861,11 @@ int main ()
     printf ("the size of string is: %d\n", vsString1.length);
     funcstringDisplay (vsString1);
     printf ("\n\n");
-    // funcstringInput (&vsString2);
-    // printf ("the size of string is: %d\n", vsString2.length);
+    funcstringInput (&vsString2);
+    printf ("the size of string is: %d\n", vsString2.length);
 
-    // funcstringDisplay (vsString2);
-    // printf ("\n\n");
+    funcstringDisplay (vsString2);
+    printf ("\n\n");
 
 
 
@@ -908,9 +921,9 @@ int main ()
     //     printf ("is not alphanumeric");
     // }
 
-    printf ("uppering string:\n");
-    funcstringUpper (&vsString1);
-    funcstringDisplay (vsString1);
+    // printf ("uppering string:\n");
+    // funcstringUpper (&vsString1);
+    // funcstringDisplay (vsString1);
 
 
 
