@@ -1,6 +1,6 @@
 
-#ifndef stringsIsImported
-    #define stringsIsImported
+#ifndef _STRINGS_C
+    #define _STRINGS_C
 #endif
 
 #ifndef _STDBOOL_H
