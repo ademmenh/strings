@@ -39,14 +39,14 @@ typedef struct string
 
 
 
-void funccharDNodeInit (stringDNode *pDNode)
+void funcstringDNodeInit (stringDNode *pDNode)
 {
     pDNode->Value = 0;
     pDNode->Next = NULL;
     pDNode->Previous = NULL;
 }
 
-stringDNode* funccharDNodeCreate (char value)
+stringDNode* funcstringDNodeCreate (char value)
 {
 
     stringDNode *vpNew = (stringDNode*) malloc(sizeof(stringDNode));
@@ -56,13 +56,13 @@ stringDNode* funccharDNodeCreate (char value)
         exit (1);
     }
 
-    funccharDNodeInit (vpNew);
+    funcstringDNodeInit (vpNew);
     vpNew->Value = value;
 
     return vpNew;
 }
 
-stringDNode* funccharDNodePointer (string DList, int index)
+stringDNode* funcstringDNodePointer (string DList, int index)
 {
     stringDNode *vpCn;
     int viCn;
@@ -102,7 +102,7 @@ stringDNode* funccharDNodePointer (string DList, int index)
     }
 }
 
-void funccharDNodeFree (stringDNode *pDNode)
+void funcstringDNodeFree (stringDNode *pDNode)
 {
     pDNode->Next = NULL;
     pDNode->Previous = NULL;
@@ -151,7 +151,7 @@ void funcstringInsert (string *pString, int index, char value)
             exit (1);
         }
 
-        vpNew = funccharDNodeCreate (value);
+        vpNew = funcstringDNodeCreate (value);
 
         if ( (*pString).length==0 )
         {
@@ -204,7 +204,7 @@ void funcstringInsert (string *pString, int index, char value)
         }
 
 
-        vpNew = funccharDNodeCreate (value);
+        vpNew = funcstringDNodeCreate (value);
 
         if ( (*pString).length==0 )
         {
@@ -270,7 +270,7 @@ void funcstringInsertBegin (string *pString, char value)
     stringDNode *vp;
     stringDNode *vpTemp;
 
-    vp = funccharDNodeCreate (value);
+    vp = funcstringDNodeCreate (value);
     if ( (*pString).length==0 )
     {
         (*pString).H = vp;
@@ -298,7 +298,7 @@ void funcstringInsertEnd (string *pString, char value)
     stringDNode *vpNew;
     stringDNode *vpTemp;
 
-    vpNew = funccharDNodeCreate(value);
+    vpNew = funcstringDNodeCreate(value);
     if ( (*pString).length==0 )
     {
         (*pString).H = vpNew;
@@ -329,7 +329,7 @@ char funcstringat (string pString, int index)
 
 
 
-    vp = funccharDNodePointer (pString, index);
+    vp = funcstringDNodePointer (pString, index);
 
     return vp->Value;
 }
@@ -379,7 +379,7 @@ int funcstringCount (string pString, char value)
 void funcstringModify (string *pString, int index, char value)
 {
 
-    stringDNode *vpNew = funccharDNodePointer (*pString, index);
+    stringDNode *vpNew = funcstringDNodePointer (*pString, index);
 
     vpNew->Value = value;
 }
@@ -393,7 +393,7 @@ void funcstringRemove (string *pString, int index)
 
 
 
-    vp = funccharDNodePointer (*pString, index);
+    vp = funcstringDNodePointer (*pString, index);
 
 
 
@@ -403,7 +403,7 @@ void funcstringRemove (string *pString, int index)
         (*pString).H = NULL;
         (*pString).T = NULL;
 
-        funccharDNodeFree (vpTemp);
+        funcstringDNodeFree (vpTemp);
     }
     else
     {
@@ -413,7 +413,7 @@ void funcstringRemove (string *pString, int index)
             (*pString).H = (*pString).H->Next;
 
             (*pString).H->Previous = NULL;
-            funccharDNodeFree (vpTemp);
+            funcstringDNodeFree (vpTemp);
         }
         else if ( vp==(*pString).T )
         {
@@ -421,7 +421,7 @@ void funcstringRemove (string *pString, int index)
             (*pString).T = (*pString).T->Previous;
 
             (*pString).T->Next = NULL;
-            funccharDNodeFree (vpTemp);
+            funcstringDNodeFree (vpTemp);
         }
         else
         {
@@ -429,7 +429,7 @@ void funcstringRemove (string *pString, int index)
 
             vpTemp->Previous->Next = vpTemp->Next;
             vpTemp->Next->Previous = vpTemp->Previous;
-            funccharDNodeFree (vpTemp);
+            funcstringDNodeFree (vpTemp);
         }
     }
 
@@ -469,7 +469,7 @@ void funcstringRemoveBegin (string *pString)
         (*pString).H = NULL;
         (*pString).T = NULL;
 
-        funccharDNodeFree (vpTemp);
+        funcstringDNodeFree (vpTemp);
     }
     else
     {
@@ -477,7 +477,7 @@ void funcstringRemoveBegin (string *pString)
         (*pString).H = (*pString).H->Next;
 
         (*pString).H->Previous = NULL;
-        funccharDNodeFree (vpTemp);    
+        funcstringDNodeFree (vpTemp);    
     }
 
 
@@ -505,7 +505,7 @@ void funcstringRemoveEnd (string *pString)
         (*pString).H = NULL;
         (*pString).T = NULL;
 
-        funccharDNodeFree (vpTemp);
+        funcstringDNodeFree (vpTemp);
     }
     else
     {
@@ -513,7 +513,7 @@ void funcstringRemoveEnd (string *pString)
         (*pString).T = (*pString).T->Previous;
 
         (*pString).T->Next = NULL;
-        funccharDNodeFree (vpTemp);
+        funcstringDNodeFree (vpTemp);
     }
     
 
