@@ -1,6 +1,6 @@
 
-#ifndef _STRINGS_C
-    #define _STRINGS_C
+#ifndef _STRING_C
+    #define _STRING_C
 #endif
 
 #ifndef _STDBOOL_H
@@ -23,33 +23,33 @@
 
 
 
-typedef struct charDNode
+typedef struct stringDNode
 {
     char Value;
-    struct charDNode *Previous;
-    struct charDNode *Next;
-} charDNode;
+    struct stringDNode *Previous;
+    struct stringDNode *Next;
+} stringDNode;
 
 typedef struct string
 {
-    struct charDNode *H;
-    struct charDNode *T;
+    struct stringDNode *H;
+    struct stringDNode *T;
     int length;
 } string;
 
 
 
-void funccharDNodeInit (charDNode *pDNode)
+void funccharDNodeInit (stringDNode *pDNode)
 {
     pDNode->Value = 0;
     pDNode->Next = NULL;
     pDNode->Previous = NULL;
 }
 
-charDNode* funccharDNodeCreate (char value)
+stringDNode* funccharDNodeCreate (char value)
 {
 
-    charDNode *vpNew = (charDNode *) malloc(sizeof(charDNode));
+    stringDNode *vpNew = (stringDNode*) malloc(sizeof(stringDNode));
     if ( vpNew==NULL )
     {
         printf ("\nThe Allocation has failled !!!");
@@ -62,9 +62,9 @@ charDNode* funccharDNodeCreate (char value)
     return vpNew;
 }
 
-charDNode* funccharDNodePointer (string DList, int index)
+stringDNode* funccharDNodePointer (string DList, int index)
 {
-    charDNode *vpCn;
+    stringDNode *vpCn;
     int viCn;
 
 
@@ -102,7 +102,7 @@ charDNode* funccharDNodePointer (string DList, int index)
     }
 }
 
-void funccharDNodeFree (charDNode *pDNode)
+void funccharDNodeFree (stringDNode *pDNode)
 {
     pDNode->Next = NULL;
     pDNode->Previous = NULL;
@@ -135,9 +135,9 @@ bool funcstringEmpty (string String)
 void funcstringInsert (string *pString, int index, char value)
 {
 
-    charDNode *vpNew;
-    charDNode *vpTemp;
-    charDNode *vpCn;
+    stringDNode *vpNew;
+    stringDNode *vpTemp;
+    stringDNode *vpCn;
     int viCn;
 
 
@@ -267,8 +267,8 @@ void funcstringInsertEnd (string *pString, char value)
 void funcstringInsertBegin (string *pString, char value)
 {
 
-    charDNode *vp;
-    charDNode *vpTemp;
+    stringDNode *vp;
+    stringDNode *vpTemp;
 
     vp = funccharDNodeCreate (value);
     if ( (*pString).length==0 )
@@ -295,8 +295,8 @@ void funcstringInsertBegin (string *pString, char value)
 void funcstringInsertEnd (string *pString, char value)
 {
 
-    charDNode *vpNew;
-    charDNode *vpTemp;
+    stringDNode *vpNew;
+    stringDNode *vpTemp;
 
     vpNew = funccharDNodeCreate(value);
     if ( (*pString).length==0 )
@@ -323,8 +323,8 @@ void funcstringInsertEnd (string *pString, char value)
 char funcstringat (string pString, int index)
 {
 
-    charDNode *vpCn;
-    charDNode *vp;
+    stringDNode *vpCn;
+    stringDNode *vp;
     int viCn = 0;
 
 
@@ -337,7 +337,7 @@ char funcstringat (string pString, int index)
 int funcstringIndex (string pString, char value)
 {
 
-    charDNode *vpCn;
+    stringDNode *vpCn;
     int viCn;
 
     vpCn = pString.H;
@@ -358,7 +358,7 @@ int funcstringIndex (string pString, char value)
 int funcstringCount (string pString, char value)
 {
     
-    charDNode *vpCn = pString.H;
+    stringDNode *vpCn = pString.H;
     int viFound = 0;
 
 
@@ -379,7 +379,7 @@ int funcstringCount (string pString, char value)
 void funcstringModify (string *pString, int index, char value)
 {
 
-    charDNode *vpNew = funccharDNodePointer (*pString, index);
+    stringDNode *vpNew = funccharDNodePointer (*pString, index);
 
     vpNew->Value = value;
 }
@@ -388,8 +388,8 @@ void funcstringModify (string *pString, int index, char value)
 void funcstringRemove (string *pString, int index)
 {
 
-    charDNode *vp;
-    charDNode *vpTemp;
+    stringDNode *vp;
+    stringDNode *vpTemp;
 
 
 
@@ -454,7 +454,7 @@ void funcstringRemoveEnd (string *pString)
 void funcstringRemoveBegin (string *pString)
 {
 
-    charDNode *vpTemp;
+    stringDNode *vpTemp;
 
     if ( (*pString).length==0 )
     {
@@ -490,7 +490,7 @@ void funcstringRemoveBegin (string *pString)
 void funcstringRemoveEnd (string *pString)
 {
     
-    charDNode *vpTemp;
+    stringDNode *vpTemp;
     
 
     if ( (*pString).length==0 )
@@ -538,8 +538,8 @@ void funcstringClear (string *pString)
 {
 
 
-    charDNode *vpCn;
-    charDNode *vpTemp;
+    stringDNode *vpCn;
+    stringDNode *vpTemp;
 
 
     vpCn = (*pString).H;
@@ -560,7 +560,7 @@ void funcstringClear (string *pString)
 
 bool funcstringIsUpper (string String)
 {
-    charDNode *vpCn;
+    stringDNode *vpCn;
 
     vpCn = String.H;
     while ( vpCn!=NULL )
@@ -578,7 +578,7 @@ bool funcstringIsUpper (string String)
 
 bool funcstringIsLower (string String)
 {
-    charDNode *vpCn;
+    stringDNode *vpCn;
 
     vpCn = String.H;
     while ( vpCn!=NULL )
@@ -596,7 +596,7 @@ bool funcstringIsLower (string String)
 
 bool funcstringIsAlpha (string String)
 {
-    charDNode *vpCn;
+    stringDNode *vpCn;
     char Value;
 
     vpCn = String.H;
@@ -616,7 +616,7 @@ bool funcstringIsAlpha (string String)
 
 bool funcstringIsNumeric (string String)
 {
-    charDNode *vpCn;
+    stringDNode *vpCn;
 
     vpCn = String.H;
     while ( vpCn!=NULL )
@@ -634,7 +634,7 @@ bool funcstringIsNumeric (string String)
 
 bool funcstringIsAlphaNumeric (string String)
 {
-    charDNode *vpCn;
+    stringDNode *vpCn;
 
     vpCn = String.H;
     while ( vpCn!=NULL )
@@ -652,7 +652,7 @@ bool funcstringIsAlphaNumeric (string String)
 
 void funcstringLower (string *pString)
 {
-    charDNode *vpCn;
+    stringDNode *vpCn;
 
     vpCn = (*pString).H;
     while ( vpCn!=NULL )
@@ -668,7 +668,7 @@ void funcstringLower (string *pString)
 
 void funcstringUpper (string *pString)
 {
-    charDNode *vpCn;
+    stringDNode *vpCn;
 
     vpCn = (*pString).H;
     while ( vpCn!=NULL )
@@ -702,8 +702,8 @@ int funcstringCompare (string String1, string String2)
         return 1;
     }
 
-    charDNode *vpCn1;
-    charDNode *vpCn2;
+    stringDNode *vpCn1;
+    stringDNode *vpCn2;
 
     vpCn1 = String1.H;
     vpCn2 = String2.H;
@@ -742,7 +742,7 @@ int funcstringCompare (string String1, string String2)
 
 void funcstringConcate (string *pString1, string String2)
 {
-    charDNode *vpCn;
+    stringDNode *vpCn;
 
     vpCn = String2.H;
     while ( vpCn!=NULL )
@@ -756,7 +756,7 @@ void funcstringConcate (string *pString1, string String2)
 
 void funcstringCopy (string *pString1, string String2)
 {
-    charDNode *vpCn;
+    stringDNode *vpCn;
 
     vpCn = String2.H;
     while ( vpCn!=NULL )
@@ -810,7 +810,7 @@ void funcstringInput (string *pString)
 void funcstringDisplay (string String)
 {
 
-    charDNode *vpCn;
+    stringDNode *vpCn;
     
     if ( String.length==0 )
     {
@@ -830,7 +830,7 @@ void funcstringDisplay (string String)
 void funcstringDisplayReversed (string String)
 {
 
-    charDNode *vpCn;
+    stringDNode *vpCn;
 
     if ( String.length==0 )
     {
