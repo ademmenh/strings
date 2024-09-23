@@ -527,7 +527,7 @@ void funcstringRemoveEnd (string *pString)
 */
 
 
-void funcstringDListClear (string *pString)
+void funcstringClear (string *pString)
 {
 
     while ( (*pString).length>0 )
@@ -773,13 +773,14 @@ void funcstringCopy (string *pString1, string String2)
 
 const int STRING_MAX_LENGTH = 101; // 100+1
 
-void funcstringAssign (string *pString, char string [])
+void funcstringAssign (string *pString, char string [STRING_MAX_LENGTH])
 {
     int viCn;
     int vistringSize = strlen (string);
-    for ( viCn=0; viCn<vistringSize; viCn++ )   // viBufferSize won't reach the '\0'
+    printf ("%d\n",vistringSize);
+    for ( viCn=0; viCn<vistringSize && viCn<STRING_MAX_LENGTH; viCn++ ) 
     {
-        if ( string[viCn]=='\n' || string[viCn]=='\0'  )               // in case of the size is less than STRING_MAX_LENGTH
+        if ( string[viCn]=='\0' )
         {
             break;
         }
@@ -866,13 +867,10 @@ void funcstringDisplayReversed (string String)
 
 
 
-int main ()
-{
-    string vsString1;
-    funcstringInit (&vsString1);
+// int main ()
+// {
+    // string vsString1;
 //     string vsString2;
-    funcstringAssign(&vsString1, "he is heeeeeere !");
-    funcstringDisplay (vsString1);
 //     funcstringInit (&vsString1);
 //     funcstringInit (&vsString2);
 
@@ -946,5 +944,5 @@ int main ()
 
 
 
-    return 0;
-}
+//     return 0;
+// }
