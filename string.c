@@ -1,7 +1,5 @@
 
-#ifndef _STRING_C
-    #define _STRING_C
-#endif
+#define _STRING_C
 
 #ifndef _STDBOOL_H
     #include <stdbool.h>
@@ -777,7 +775,6 @@ void funcstringAssign (string *pString, char string [STRING_MAX_LENGTH])
 {
     int viCn;
     int vistringSize = strlen (string);
-    printf ("%d\n",vistringSize);
     for ( viCn=0; viCn<vistringSize && viCn<STRING_MAX_LENGTH; viCn++ ) 
     {
         if ( string[viCn]=='\0' )
@@ -788,42 +785,44 @@ void funcstringAssign (string *pString, char string [STRING_MAX_LENGTH])
     }
 }
 
-void funcstringInput (string *pString)
-{
-
-    char Buffer [STRING_MAX_LENGTH];
-    int viBufferSize;
-    char vcClearBuffer;
-
-    int viCn;
-
-
-
-
-
-    printf ("Enter the String: ");
-    fgets (Buffer, STRING_MAX_LENGTH, stdin);
-
-
-
-    viBufferSize = strlen (Buffer);
-    if ( Buffer[viBufferSize-1] != '\n' )
+#ifndef _func_STRINGINPUT
+    void funcstringInput (string *pString)
     {
-        do
-        {
-            vcClearBuffer = getchar();
-        } while ( vcClearBuffer!='\n' );
-    }
 
-    for ( viCn=0; viCn<viBufferSize; viCn++ )   // viBufferSize won't reach the '\0'
-    {
-        if ( Buffer[viCn]=='\n' )               // in case of the size is less than STRING_MAX_LENGTH
+        char Buffer [STRING_MAX_LENGTH];
+        int viBufferSize;
+        char vcClearBuffer;
+
+        int viCn;
+
+
+
+
+
+        printf ("Enter the String: ");
+        fgets (Buffer, STRING_MAX_LENGTH, stdin);
+
+
+
+        viBufferSize = strlen (Buffer);
+        if ( Buffer[viBufferSize-1] != '\n' )
         {
-            break;
+            do
+            {
+                vcClearBuffer = getchar();
+            } while ( vcClearBuffer!='\n' );
         }
-        funcstringInsertEnd (pString, Buffer[viCn]);
+
+        for ( viCn=0; viCn<viBufferSize; viCn++ )   // viBufferSize won't reach the '\0'
+        {
+            if ( Buffer[viCn]=='\n' )               // in case of the size is less than STRING_MAX_LENGTH
+            {
+                break;
+            }
+            funcstringInsertEnd (pString, Buffer[viCn]);
+        }
     }
-}
+#endif
 
 void funcstringDisplay (string String)
 {
@@ -864,85 +863,3 @@ void funcstringDisplayReversed (string String)
         vpCn = vpCn->Previous;
     }
 }
-
-
-
-// int main ()
-// {
-    // string vsString1;
-//     string vsString2;
-//     funcstringInit (&vsString1);
-//     funcstringInit (&vsString2);
-
-//     funcstringInput (&vsString1);
-//     printf ("the size of string is: %d\n", vsString1.length);
-//     funcstringDisplay (vsString1);
-//     printf ("\n\n");
-//     funcstringInput (&vsString2);
-//     printf ("the size of string is: %d\n", vsString2.length);
-
-//     funcstringDisplay (vsString2);
-//     printf ("\n\n");
-
-
-
-//     // int viCmp;
-//     // viCmp = funcstringCompare (vsString1, vsString2);
-    
-//     // if ( viCmp==0 )
-//     // {
-//     //     printf ("the string are equal.\n");
-//     // }
-//     // else if ( viCmp==1 )
-//     // {
-//     //     printf ("the string1 is greater then string2");
-//     // }
-//     // else
-//     // {
-//     //     printf ("the string2 is greater then string1");
-//     // }
-//     // print ("\n\n");
-
-
-
-//     // printf ("after concatenation:\n");
-//     // funcstringConcate (&vsString1, vsString2);
-//     // printf ("string1: ");
-//     // funcstringDisplay (vsString1);
-//     // printf ("\n");
-//     // printf ("the size of the string is: %d.\n", vsString1.length);
-//     // printf ("\n\n");
-//     // printf ("string2: ");
-//     // funcstringDisplay (vsString2);
-//     // printf ("\n");
-//     // printf ("the size of the string is: %d.\n", vsString2.length);
-//     // printf ("\n\n");
-
-
-
-//     // printf ("Copying the string1 in string2:\n");
-//     // funcstringCopy ( &vsString2, vsString1 );
-//     // funcstringDisplay ( vsString2 );
-//     // printf ("\n\n");
-
-
-
-//     // printf ("is it alphanumeric or not:\n");
-//     // bool vbAlphaNumeric = funcstringIsAlphaNumeric (vsString1);
-//     // if ( vbAlphaNumeric )
-//     // {
-//     //     printf ("is alphanumeric");
-//     // }
-//     // else
-//     // {
-//     //     printf ("is not alphanumeric");
-//     // }
-
-//     // printf ("uppering string:\n");
-//     // funcstringUpper (&vsString1);
-//     // funcstringDisplay (vsString1);
-
-
-
-//     return 0;
-// }
